@@ -4,14 +4,19 @@ import styles from "./UserList.module.css";
 import useFetchData from "@/hooks/useFetchData";
 import User from "../User/User";
 import { UserData } from "@/types";
+import useDebounce from "@/hooks/useDebounce";
 
 const UserList = ({ searchTerm }: { searchTerm: string }) => {
   const { data, loading, error } = useFetchData<UserData[]>("/users");
 
-  const filteredUsers = data?.filter((user) => {
-    const searchParts = searchTerm.toLowerCase().split(" ");
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
-    return searchParts.every((part) => user.name.toLowerCase().includes(part));
+  const filteredUsers = data?.filter((user) => {
+    const searchkeywords = debouncedSearchTerm.toLowerCase().split(" ");
+
+    return searchkeywords.every((term) =>
+      user.name.toLowerCase().includes(term)
+    );
   });
 
   if (loading)
