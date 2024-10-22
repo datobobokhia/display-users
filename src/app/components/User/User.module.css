@@ -1,0 +1,26 @@
+.list {
+  padding: 15px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  transition: transform 0.2s;
+  min-height: 100px;
+}
+
+.list:hover {
+  transform: scale(1.02);
+}
+
+.name {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.email {
+  font-size: 1rem;
+  color: #555;
+  margin: 5px 0 0 0;
+}
